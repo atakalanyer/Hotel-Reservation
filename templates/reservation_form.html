@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block icerik %}
+<section class="kart">
+    <h2>Yeni Rezervasyon</h2>
+    <form method="post" class="form-grid">
+        <label>Ad
+            <input type="text" name="ad" required>
+        </label>
+        <label>Soyad
+            <input type="text" name="soyad" required>
+        </label>
+        <label>Telefon
+            <input type="text" name="telefon" required>
+        </label>
+        <label>E-posta
+            <input type="email" name="email">
+        </label>
+        <label>Oda
+            <select name="oda_id" required>
+                <option value="">Seciniz</option>
+                {% for oda in odalar %}
+                    <option value="{{ oda.oda_id }}">
+                        {{ oda.oda_no }} - {{ oda.tip_adi }} ({{ "%.2f"|format(oda.gecelik_fiyat) }} TL)
+                    </option>
+                {% endfor %}
+            </select>
+        </label>
+        <label>Giris Tarihi
+            <input type="date" name="giris_tarihi" required>
+        </label>
+        <label>Cikis Tarihi
+            <input type="date" name="cikis_tarihi" required>
+        </label>
+        <div>
+            <button type="submit">Rezervasyonu Kaydet</button>
+        </div>
+    </form>
+</section>
+{% endblock %}

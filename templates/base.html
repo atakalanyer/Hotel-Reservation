@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Otel Rezervasyon Sistemi</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header class="ust">
+        <div class="kapsayici">
+            <h1>Otel Rezervasyon Sistemi</h1>
+            <nav>
+                <a href="{{ url_for('anasayfa') }}">Anasayfa</a>
+                <a href="{{ url_for('rezervasyon_yeni') }}">Yeni Rezervasyon</a>
+                <a href="{{ url_for('rezervasyonlar_listesi') }}">Rezervasyonlar</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="kapsayici">
+        {% with mesajlar = get_flashed_messages(with_categories=true) %}
+            {% if mesajlar %}
+                {% for kategori, mesaj in mesajlar %}
+                    <div class="mesaj {{ kategori }}">{{ mesaj }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        {% block icerik %}{% endblock %}
+    </main>
+</body>
+</html>

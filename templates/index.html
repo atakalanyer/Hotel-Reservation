@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block icerik %}
+<section class="kart">
+    <h2>Odalar</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Oda No</th>
+                <th>Tip</th>
+                <th>Kapasite</th>
+                <th>Gecelik Fiyat (TL)</th>
+                <th>Durum</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for oda in odalar %}
+            <tr>
+                <td>{{ oda.oda_no }}</td>
+                <td>{{ oda.tip_adi }}</td>
+                <td>{{ oda.kapasite }}</td>
+                <td>{{ "%.2f"|format(oda.gecelik_fiyat) }}</td>
+                <td>
+                    <span class="durum {{ oda.durum }}">{{ oda.durum }}</span>
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="5">Kayitli oda bulunamadi.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
+{% endblock %}

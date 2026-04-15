@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block icerik %}
+<section class="kart">
+    <h2>Rezervasyon Listesi</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Misafir</th>
+                <th>Telefon</th>
+                <th>Oda</th>
+                <th>Giris</th>
+                <th>Cikis</th>
+                <th>Durum</th>
+                <th>Toplam Ucret (TL)</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for r in rezervasyonlar %}
+            <tr>
+                <td>{{ r.rezervasyon_id }}</td>
+                <td>{{ r.ad }} {{ r.soyad }}</td>
+                <td>{{ r.telefon }}</td>
+                <td>{{ r.oda_no }} - {{ r.tip_adi }}</td>
+                <td>{{ r.giris_tarihi }}</td>
+                <td>{{ r.cikis_tarihi }}</td>
+                <td>{{ r.durum }}</td>
+                <td>{{ "%.2f"|format(r.toplam_ucret or 0) }}</td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="8">Henuz rezervasyon bulunmuyor.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
+{% endblock %}
