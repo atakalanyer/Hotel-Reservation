@@ -7,30 +7,40 @@
         <thead>
             <tr>
                 <th>No</th>
+                <th>Otel</th>
                 <th>Misafir</th>
                 <th>Telefon</th>
+                <th>E-posta</th>
                 <th>Oda</th>
                 <th>Giris</th>
                 <th>Cikis</th>
                 <th>Durum</th>
                 <th>Toplam Ucret (TL)</th>
+                <th>Islem</th>
             </tr>
         </thead>
         <tbody>
             {% for r in rezervasyonlar %}
             <tr>
                 <td>{{ r.rezervasyon_id }}</td>
+                <td>{{ r.otel_adi }}</td>
                 <td>{{ r.ad }} {{ r.soyad }}</td>
                 <td>{{ r.telefon }}</td>
+                <td>{{ r.email or "-" }}</td>
                 <td>{{ r.oda_no }} - {{ r.tip_adi }}</td>
                 <td>{{ r.giris_tarihi }}</td>
                 <td>{{ r.cikis_tarihi }}</td>
                 <td>{{ r.durum }}</td>
                 <td>{{ "%.2f"|format(r.toplam_ucret or 0) }}</td>
+                <td>
+                    <form method="post" action="{{ url_for('rezervasyon_sil', rezervasyon_id=r.rezervasyon_id) }}">
+                        <button type="submit" class="danger">Kaldir</button>
+                    </form>
+                </td>
             </tr>
             {% else %}
             <tr>
-                <td colspan="8">Henuz rezervasyon bulunmuyor.</td>
+                <td colspan="11">Henuz rezervasyon bulunmuyor.</td>
             </tr>
             {% endfor %}
         </tbody>

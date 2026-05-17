@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="k" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#7c2d12"/>
+      <stop offset="45%" style="stop-color:#c2410c"/>
+      <stop offset="100%" style="stop-color:#fdba74"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="500" fill="url(#k)"/>
+  <ellipse cx="200" cy="380" rx="90" ry="120" fill="rgba(0,0,0,0.15)"/>
+  <ellipse cx="400" cy="360" rx="110" ry="140" fill="rgba(0,0,0,0.12)"/>
+  <ellipse cx="620" cy="390" rx="100" ry="110" fill="rgba(0,0,0,0.14)"/>
+  <circle cx="650" cy="90" r="40" fill="rgba(255,237,213,0.35)"/>
+  <text x="400" y="430" text-anchor="middle" fill="rgba(255,255,255,0.95)" font-family="Segoe UI,Arial,sans-serif" font-size="28" font-weight="600">Kapadokya</text>
+</svg>

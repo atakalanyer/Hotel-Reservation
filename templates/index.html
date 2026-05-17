@@ -1,35 +1,70 @@
 {% extends "base.html" %}
 
+{% block main_ek_sinif %}kapsayici-genis{% endblock %}
+
 {% block icerik %}
-<section class="kart">
-    <h2>Odalar</h2>
-    <table>
-        <thead>
-            <tr>
-                <th>Oda No</th>
-                <th>Tip</th>
-                <th>Kapasite</th>
-                <th>Gecelik Fiyat (TL)</th>
-                <th>Durum</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for oda in odalar %}
-            <tr>
-                <td>{{ oda.oda_no }}</td>
-                <td>{{ oda.tip_adi }}</td>
-                <td>{{ oda.kapasite }}</td>
-                <td>{{ "%.2f"|format(oda.gecelik_fiyat) }}</td>
-                <td>
-                    <span class="durum {{ oda.durum }}">{{ oda.durum }}</span>
-                </td>
-            </tr>
-            {% else %}
-            <tr>
-                <td colspan="5">Kayitli oda bulunamadi.</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+<section class="kart otel-intro-kart">
+    <h2>Otellerimiz</h2>
+    <p>Asagidaki otellerden birini secerek o otele ait odalarda rezervasyon yapabilirsiniz. Her kartta oda listesi ve rezervasyon baglantisi yer alir.</p>
 </section>
+
+<div class="otel-kartlari">
+{% for otel in oteller %}
+    <article class="otel-kutu">
+        <div class="otel-gorsel-wrap">
+            <img
+                class="otel-gorsel"
+                src="{{ url_for('static', filename=otel.gorsel_yolu) }}"
+                alt="{{ otel.otel_adi }} — {{ otel.sehir }}"
+                width="800"
+                height="500"
+                loading="lazy"
+            >
+        </div>
+        <div class="otel-kutu-govde">
+            <h3 class="otel-baslik">{{ otel.otel_adi }}</h3>
+            <p class="otel-sehir">{{ otel.sehir }}</p>
+            <a class="link-buton otel-rez-buton" href="{{ url_for('rezervasyon_yeni', otel_id=otel.otel_id) }}">
+                Bu Otelde Rezervasyon Yap
+            </a>
+            <div class="otel-oda-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Oda ID</th>
+                            <th>Oda No</th>
+                            <th>Tip</th>
+                            <th>Kapasite</th>
+                            <th>Gecelik Fiyat (TL)</th>
+                            <th>Durum</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for oda in otel.odalar %}
+                        <tr>
+                            <td>{{ oda.oda_id }}</td>
+                            <td>{{ oda.oda_no }}</td>
+                            <td>{{ oda.tip_adi }}</td>
+                            <td>{{ oda.kapasite }}</td>
+                            <td>{{ "%.2f"|format(oda.gecelik_fiyat) }}</td>
+                            <td>
+                                <span class="durum {{ oda.durum }}">{{ oda.durum }}</span>
+                            </td>
+                        </tr>
+                        {% else %}
+                        <tr>
+                            <td colspan="6">Bu otele ait oda bulunamadi.</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </article>
+{% else %}
+<section class="kart">
+    <p>Kayitli otel bulunamadi.</p>
+</section>
+{% endfor %}
+</div>
 {% endblock %}

@@ -14,6 +14,11 @@ body {
     margin: 0 auto;
 }
 
+.kapsayici-genis {
+    width: min(1420px, 96%);
+    max-width: 100%;
+}
+
 .ust {
     background: #0a3d62;
     color: #fff;
@@ -31,6 +36,12 @@ nav a {
     margin-right: 16px;
 }
 
+.kullanici-bilgi {
+    margin-right: 12px;
+    font-size: 0.92rem;
+    opacity: 0.9;
+}
+
 main {
     margin: 24px auto;
 }
@@ -40,6 +51,16 @@ main {
     border-radius: 10px;
     padding: 20px;
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+.link-buton {
+    display: inline-block;
+    margin: 8px 0 14px;
+    background: #0a3d62;
+    color: #fff;
+    text-decoration: none;
+    padding: 9px 12px;
+    border-radius: 6px;
 }
 
 table {
@@ -58,6 +79,10 @@ th, td {
     gap: 12px;
 }
 
+.dar-kart {
+    max-width: 560px;
+}
+
 input, select, button {
     width: 100%;
     padding: 10px;
@@ -71,6 +96,10 @@ button {
     color: #fff;
     cursor: pointer;
     border: none;
+}
+
+button.danger {
+    background: #b91c1c;
 }
 
 .mesaj {
@@ -103,4 +132,95 @@ button {
 .durum.dolu {
     background: #fee2e2;
     color: #991b1b;
+}
+
+.iletisim-liste {
+    margin: 0;
+    padding-left: 18px;
+}
+
+.ipucu {
+    margin-top: 12px;
+    color: #334155;
+}
+
+.otel-intro-kart {
+    margin-bottom: 8px;
+}
+
+.otel-kartlari {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 360px), 1fr));
+    gap: clamp(1.1rem, 2.5vw, 1.85rem);
+    align-items: stretch;
+}
+
+.otel-kutu {
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(15, 23, 42, 0.1);
+    border: 1px solid rgba(148, 163, 184, 0.25);
+    min-height: 100%;
+}
+
+.otel-gorsel-wrap {
+    aspect-ratio: 16 / 10;
+    background: linear-gradient(135deg, #e2e8f0, #cbd5e1);
+    flex-shrink: 0;
+}
+
+.otel-gorsel {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.otel-kutu-govde {
+    padding: 16px 18px 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.otel-baslik {
+    margin: 0;
+    font-size: 1.2rem;
+    line-height: 1.25;
+    color: #0f172a;
+}
+
+.otel-sehir {
+    margin: 0 0 8px;
+    font-size: 0.95rem;
+    color: #475569;
+}
+
+.otel-rez-buton {
+    margin-top: 4px;
+    margin-bottom: 0;
+    align-self: flex-start;
+}
+
+.otel-oda-wrap {
+    margin-top: 12px;
+    overflow-x: auto;
+    flex: 1;
+    border-radius: 8px;
+    border: 1px solid #e5e7eb;
+}
+
+.otel-oda-wrap table {
+    min-width: 520px;
+    margin: 0;
+}
+
+.otel-oda-wrap th,
+.otel-oda-wrap td {
+    font-size: 0.9rem;
+    padding: 8px 10px;
 }

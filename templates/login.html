@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block icerik %}
+<section class="kart dar-kart">
+    <h2>Kullanici / Admin Girisi</h2>
+    <form method="post" class="form-grid">
+        <label>Kullanici Adi
+            <input type="text" name="kullanici_adi" required>
+        </label>
+        <label>Sifre
+            <input type="password" name="sifre" required>
+        </label>
+        <button type="submit">Giris Yap</button>
+    </form>
+    <p class="ipucu">
+        Ornek hesaplar: kullanici / 123456 ve admin / admin123
+    </p>
+</section>
+{% endblock %}

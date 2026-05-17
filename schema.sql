@@ -2,6 +2,27 @@ IF OBJECT_ID('dbo.rezervasyonlar', 'U') IS NOT NULL DROP TABLE dbo.rezervasyonla
 IF OBJECT_ID('dbo.misafirler', 'U') IS NOT NULL DROP TABLE dbo.misafirler;
 IF OBJECT_ID('dbo.odalar', 'U') IS NOT NULL DROP TABLE dbo.odalar;
 IF OBJECT_ID('dbo.oda_tipleri', 'U') IS NOT NULL DROP TABLE dbo.oda_tipleri;
+IF OBJECT_ID('dbo.kullanicilar', 'U') IS NOT NULL DROP TABLE dbo.kullanicilar;
+IF OBJECT_ID('dbo.oteller', 'U') IS NOT NULL DROP TABLE dbo.oteller;
+GO
+
+CREATE TABLE dbo.oteller (
+    otel_id      INT             IDENTITY(1,1) PRIMARY KEY,
+    otel_adi     NVARCHAR(100)   NOT NULL,
+    sehir        NVARCHAR(50)    NOT NULL,
+    adres        NVARCHAR(200)   NOT NULL,
+    aciklama     NVARCHAR(300)   NULL,
+    gorsel_yolu  NVARCHAR(260)   NULL
+);
+GO
+
+CREATE TABLE dbo.kullanicilar (
+    kullanici_id      INT             IDENTITY(1,1) PRIMARY KEY,
+    kullanici_adi     NVARCHAR(50)    NOT NULL UNIQUE,
+    sifre             NVARCHAR(100)   NOT NULL,
+    rol               NVARCHAR(20)    NOT NULL CHECK (rol IN ('kullanici', 'admin')),
+    ad_soyad          NVARCHAR(100)   NOT NULL
+);
 GO
 
 CREATE TABLE dbo.oda_tipleri (
@@ -13,11 +34,14 @@ CREATE TABLE dbo.oda_tipleri (
 GO
 
 CREATE TABLE dbo.odalar (
-    oda_id  INT            IDENTITY(1,1) PRIMARY KEY,
-    tip_id  INT            NOT NULL,
-    oda_no  NVARCHAR(10)   NOT NULL UNIQUE,
-    durum   NVARCHAR(20)   NOT NULL DEFAULT 'musait',
+    oda_id    INT            IDENTITY(1,1) PRIMARY KEY,
+    otel_id   INT            NOT NULL,
+    tip_id    INT            NOT NULL,
+    oda_no    NVARCHAR(10)   NOT NULL,
+    durum     NVARCHAR(20)   NOT NULL DEFAULT 'musait',
 
+    CONSTRAINT UQ_odalar_otel_oda_no UNIQUE (otel_id, oda_no),
+    CONSTRAINT FK_odalar_oteller FOREIGN KEY (otel_id) REFERENCES dbo.oteller(otel_id),
     CONSTRAINT FK_odalar_oda_tipleri FOREIGN KEY (tip_id) REFERENCES dbo.oda_tipleri(tip_id)
 );
 GO

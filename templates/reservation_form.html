@@ -2,7 +2,8 @@
 
 {% block icerik %}
 <section class="kart">
-    <h2>Yeni Rezervasyon</h2>
+    <h2>Yeni Rezervasyon - {{ otel.otel_adi }} (ID: {{ otel.otel_id }})</h2>
+    <p>Bu form sadece secilen otele ait odalarda rezervasyon olusturur.</p>
     <form method="post" class="form-grid">
         <label>Ad
             <input type="text" name="ad" required>
@@ -21,7 +22,7 @@
                 <option value="">Seciniz</option>
                 {% for oda in odalar %}
                     <option value="{{ oda.oda_id }}">
-                        {{ oda.oda_no }} - {{ oda.tip_adi }} ({{ "%.2f"|format(oda.gecelik_fiyat) }} TL)
+                        Oda ID {{ oda.oda_id }} / No {{ oda.oda_no }} - {{ oda.tip_adi }} ({{ "%.2f"|format(oda.gecelik_fiyat) }} TL)
                     </option>
                 {% endfor %}
             </select>

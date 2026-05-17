@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block icerik %}
+<section class="kart dar-kart">
+    <h2>Veritabani Kurulumu Gerekli</h2>
+    <p>
+        Uygulamanin yeni surumu icin gerekli tablolar bulunamadi. Devam etmek icin
+        veritabanini bir kez baslatmaniz gerekiyor.
+    </p>
+    <form method="post" action="{{ url_for('init_db_route') }}">
+        <button type="submit">Veritabanini Olustur / Guncelle</button>
+    </form>
+</section>
+{% endblock %}

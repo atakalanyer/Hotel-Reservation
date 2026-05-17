@@ -12,13 +12,25 @@
             <h1>Otel Rezervasyon Sistemi</h1>
             <nav>
                 <a href="{{ url_for('anasayfa') }}">Anasayfa</a>
-                <a href="{{ url_for('rezervasyon_yeni') }}">Yeni Rezervasyon</a>
-                <a href="{{ url_for('rezervasyonlar_listesi') }}">Rezervasyonlar</a>
+                <a href="{{ url_for('hakkimizda') }}">Hakkimizda</a>
+                <a href="{{ url_for('iletisim') }}">Iletisim</a>
+                {% if aktif_kullanici.kullanici_id %}
+                    <a href="{{ url_for('rezervasyon_yeni_yonlendir') }}">Yeni Rezervasyon</a>
+                    {% if aktif_kullanici.rol == 'admin' %}
+                        <a href="{{ url_for('rezervasyonlar_listesi') }}">Admin Paneli</a>
+                    {% endif %}
+                    <span class="kullanici-bilgi">
+                        {{ aktif_kullanici.ad_soyad }} ({{ aktif_kullanici.rol }})
+                    </span>
+                    <a href="{{ url_for('cikis') }}">Cikis</a>
+                {% else %}
+                    <a href="{{ url_for('giris') }}">Kullanici/Admin Girisi</a>
+                {% endif %}
             </nav>
         </div>
     </header>
 
-    <main class="kapsayici">
+    <main class="kapsayici {% block main_ek_sinif %}{% endblock %}">
         {% with mesajlar = get_flashed_messages(with_categories=true) %}
             {% if mesajlar %}
                 {% for kategori, mesaj in mesajlar %}
