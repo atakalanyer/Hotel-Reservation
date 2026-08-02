@@ -47,7 +47,3 @@ Uygulama bu ortam degiskenlerini kullanir:
 - `DB_ENCRYPT` (varsayilan: `yes`)
 - `DB_USER`, `DB_PASSWORD` (girildiginde SQL Authentication kullanilir)
 - `DB_TRUST_CERT` (varsayilan: `yes`)
-
-## Not
-
-- `orijinal_schema.sql` dosyasi, kullanicinin ilk paylastigi tablo yapisinin birebir kopyasidir.
